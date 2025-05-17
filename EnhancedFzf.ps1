@@ -5,9 +5,9 @@ function Enhanced-Fzf {
         [Parameter(Mandatory = $true)]
         [string]$extension,
         [Parameter(Mandatory = $false)]
-        [string]$path = $PSScriptRoot
+        [string]$path = $(Get-Location)
     )
-    Enhanced-Fzf-Base $extension $path | fzf --delimiter=':' --preview "bat --color=always --style=numbers --line-range {2}:{3} --highlight-line {4} {1}"
+    Enhanced-Fzf-Base $extension $path | fzf --delimiter=';' --preview "bat --color=always --style=numbers --line-range {2}:{3} --highlight-line {4} {1}"
 }
 
 # For debugging in VS Code.

@@ -7,15 +7,15 @@ function Process-Line {
     $lineRangeStart = if ($Line.LineNumber -gt 21) { $Line.LineNumber - 20 } else { 1 }
     $lineRangeEnd = $Line.LineNumber + 20
 
-    return "$($Line.Path):$($lineRangeStart):$($lineRangeEnd):$($Line.LineNumber):$($Line.Line)"
+    return "$($Line.Path);$($lineRangeStart);$($lineRangeEnd);$($Line.LineNumber);$($Line.Line)"
 }
 
 function Enhanced-Fzf-Base {
     param(
         [Parameter(Mandatory = $true)]
         [string]$extension,
-        [Parameter(Mandatory = $false)]
-        [string]$path = $PSScriptRoot
+        [Parameter(Mandatory = $true)]
+        [string]$path
     )
 
     return Get-ChildItem $path -r -filter *.$extension | Select-String . | ForEach-Object {
